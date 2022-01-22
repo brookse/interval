@@ -19,7 +19,8 @@ export class HomePage {
   constructor(private nativeAudio: NativeAudio) {
     this.timerStarted = false;
     this.timerPaused = false;
-    this.nativeAudio.preloadSimple('bells', '/assets/bells.mp3');
+    this.nativeAudio.preloadSimple('bells', 'assets/bells.mp3');
+    this.nativeAudio.preloadSimple('horn', 'assets/horn.mp3');
   }
 
   // remove the elapsed time, and check if we need to send notice
@@ -38,8 +39,12 @@ export class HomePage {
   }
 
   sendAlert() {
-    this.nativeAudio.play('bells');
-    console.log('ITS TIME')
+    let value = Math.random();
+    if (value < .05) {
+      this.nativeAudio.play('horn');
+    } else {
+      this.nativeAudio.play('bells');
+    }
   }
 
   getCountdown() {
