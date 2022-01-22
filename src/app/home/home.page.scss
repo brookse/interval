@@ -4,8 +4,7 @@
   position: absolute;
   left: 0;
   right: 0;
-  top: 50%;
-  transform: translateY(-50%);
+  top: 40px;
 }
 
 #container strong {
@@ -24,4 +23,58 @@
 
 #container a {
   text-decoration: none;
+}
+
+.interval-select {
+  display: flex;
+  flex-direction: column;
+
+  ion-label {
+
+  }
+
+  .inputs {
+    display: flex;
+    flex-direction: row;
+    padding: 10px 40px;
+    ion-input {
+      border-bottom: 1px solid gray;
+      margin-right: 40px;
+    }
+
+    ion-segment {
+      width: 70%;
+      border: 1px solid gray;
+      border-radius: 50px;
+    }
+  }
+
+}
+
+.top-buttons {
+  margin: 0px 40px;
+  .timer {
+    width: 50%;
+    padding: 20px;
+
+    &.start {
+      background-color: darkgreen;
+    }
+    &.reset {
+      background-color: darkred;
+    }
+  }
+}
+
+.labels {
+  padding-top: 30px;
+  display: flex;
+  flex-direction: column;
+  .flavor {
+
+  }
+
+  .countdown {
+    font-size: 100px;
+  }
 }
