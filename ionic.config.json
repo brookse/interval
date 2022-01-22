@@ -1,0 +1,7 @@
+{
+  "name": "interval",
+  "integrations": {
+    "capacitor": {}
+  },
+  "type": "angular"
+}
