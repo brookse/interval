@@ -24,3 +24,26 @@
 @import "~@ionic/angular/css/text-alignment.css";
 @import "~@ionic/angular/css/text-transformation.css";
 @import "~@ionic/angular/css/flex-utils.css";
+
+ion-alert {
+  font-family: 'Metropolis-Regular' !important;
+
+  .alert-head {
+    padding: 0px !important;
+  }
+
+  .alert-radio-icon {
+    border-color: #008C8C !important;
+    .alert-radio-inner {
+      background-color: #008C8C !important;
+    }
+  }
+
+  .alert-button {
+    color: #008C8C !important;
+    font-family: 'Metropolis-Bold' !important;
+  }
+  .alert-button-role-cancel {
+    color: darkred !important;
+  }
+}

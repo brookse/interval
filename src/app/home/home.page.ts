@@ -1,6 +1,5 @@
 import { Component } from '@angular/core';
 import * as moment from 'moment';
-import { NativeAudio } from '@awesome-cordova-plugins/native-audio/ngx';
 
 @Component({
   selector: 'app-home',
@@ -15,12 +14,26 @@ export class HomePage {
   timer;          // the interval timer
   remainingTime;  // in ms
   displayTime;    // calculated every 500ms
+  horn;
+  bells;
 
-  constructor(private nativeAudio: NativeAudio) {
+  displaySeconds;
+  displayMinutes;
+  displayHours;
+
+  constructor() {
     this.timerStarted = false;
     this.timerPaused = false;
-    this.nativeAudio.preloadSimple('bells', 'assets/bells.mp3');
-    this.nativeAudio.preloadSimple('horn', 'assets/horn.mp3');
+    this.setupAudio();
+  }
+
+  setupAudio() {
+    this.bells = new Audio();
+    this.horn = new Audio();
+    this.bells.src = 'assets/bells.mp3';
+    this.horn.src = 'assets/horn.mp3';
+    this.bells.load();
+    this.horn.load();
   }
 
   // remove the elapsed time, and check if we need to send notice
@@ -41,9 +54,9 @@ export class HomePage {
   sendAlert() {
     let value = Math.random();
     if (value < .05) {
-      this.nativeAudio.play('horn');
+      this.horn.play();
     } else {
-      this.nativeAudio.play('bells');
+      this.bells.play();
     }
   }
 
@@ -54,16 +67,19 @@ export class HomePage {
     let hours = Math.floor(tempTime / 3600000);
     tempTime = tempTime - (hours * 3600000);
     if (hours > 0) {
-      buildingString += `${hours}h `;
+      buildingString += `${hours}<span class="tag">h</span> `;
+      this.displayHours = hours;
     }
 
     let minutes = Math.floor(tempTime / 60000);
     tempTime = tempTime - (minutes * 60000);
-    buildingString += `${minutes}m `;
+    buildingString += `${minutes}<span class="tag">m</span> `;
+    this.displayMinutes = minutes;
 
     let seconds = Math.floor(tempTime / 1000);
     tempTime = tempTime - (hours * 1000);
-    buildingString += `${seconds}s `;
+    buildingString += `${seconds}<span class="tag">s</span> `;
+    this.displaySeconds = seconds;
 
     this.displayTime = buildingString;
   }
@@ -76,8 +92,12 @@ export class HomePage {
     }, 500);
   }
 
-  togglePause() {
-    this.timerPaused = !this.timerPaused;
+  pauseTimer() {
+    this.timerPaused = true;
+  }
+
+  unpauseTimer() {
+    this.timerPaused = false;
   }
 
   resetTimer() {

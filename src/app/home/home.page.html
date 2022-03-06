@@ -1,40 +1,40 @@
 <ion-content [fullscreen]="true">
-  <ion-header collapse="condense">
-    <ion-toolbar>
-      <ion-title size="large">Blank</ion-title>
-    </ion-toolbar>
-  </ion-header>
-
   <div id="container">
-    <div class="interval-select" *ngIf="!timerStarted">
-      <ion-label>Alert me every...</ion-label>
+    <div class="flex-container">
+      <div class="left">
+        <button class="timer start" (click)="startTimer()" *ngIf="!timerStarted" [disabled]="!number"></button>
+        <button class="timer pause" (click)="pauseTimer()" *ngIf="timerStarted && !timerPaused"></button>
+        <button class="timer start" (click)="unpauseTimer()" *ngIf="timerStarted && timerPaused"></button>
 
-      <div class="inputs">
-        <ion-input type="number" placeholder="30" [(ngModel)]="number" [disabled]="timerStarted"></ion-input>
-
-        <ion-segment (ionChange)="intervalChanged($event)" value="60000" [disabled]="timerStarted">
-          <ion-segment-button value="1000">
-            <ion-label>Seconds</ion-label>
-          </ion-segment-button>
-          <ion-segment-button value="60000">
-            <ion-label>Minutes</ion-label>
-          </ion-segment-button>
-          <ion-segment-button value="3600000">
-            <ion-label>Hours</ion-label>
-          </ion-segment-button>
-        </ion-segment>
+        <button class="timer reset" (click)="resetTimer()">Reset timer</button>
       </div>
-    </div>
 
-    <div class="top-buttons">
-      <button class="timer start" (click)="startTimer()" *ngIf="!timerStarted" [disabled]="!number">Start timer</button>
-      <button class="timer pause" (click)="togglePause()" *ngIf="timerStarted">{{ timerPaused ? 'Unpause' : 'Pause' }} timer</button>
-      <button class="timer reset" (click)="resetTimer()">Reset timer</button>
-    </div>
+      <div class="right">
+        <div class="interval-select" *ngIf="!timerStarted">
+          <ion-label>Alert me every...</ion-label>
 
-    <div class="labels">
-      <ion-label class="flavor" *ngIf="timerStarted">Next alert in...</ion-label>
-      <ion-label class="countdown" *ngIf="timerStarted">{{ displayTime }}</ion-label>
+          <div class="inputs">
+            <ion-input type="number" placeholder="30" [(ngModel)]="number" [disabled]="timerStarted"></ion-input>
+
+              <ion-select placeholder="Select One" (ionChange)="intervalChanged($event)" value="60000" [disabled]="timerStarted">
+                <ion-select-option value="1000">Seconds</ion-select-option>
+                <ion-select-option value="60000">Minutes</ion-select-option>
+                <ion-select-option value="3600000">Hours</ion-select-option>
+              </ion-select>
+          </div>
+        </div>
+
+        <div class="labels">
+          <ion-label class="flavor" *ngIf="timerStarted">Next alert in...</ion-label>
+          <div class="countdown" *ngIf="timerStarted">
+            <span *ngIf="displayHours">{{ displayHours }}<span class="tag">h</span></span>
+            {{ displayMinutes }}<span class="tag">m</span>
+            {{ displaySeconds }}<span class="tag">s</span>
+          </div>
+        </div>
+
+
+      </div>
     </div>
   </div>
 </ion-content>

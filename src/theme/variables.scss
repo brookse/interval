@@ -1,6 +1,25 @@
 // Ionic Variables and Theming. For more info, please see:
 // http://ionicframework.com/docs/theming/
 
+@font-face {
+  font-family: 'Metropolis-Light';
+  font-style: none;
+  font-weight: 200;
+  src: url('../assets/fonts/Metropolis-Light.otf');
+}
+@font-face {
+  font-family: 'Metropolis-Regular';
+  font-style: none;
+  font-weight: 400;
+  src: url('../assets/fonts/Metropolis-Regular.otf');
+}
+@font-face {
+  font-family: 'Metropolis-Bold';
+  font-style: none;
+  font-weight: 600;
+  src: url('../assets/fonts/Metropolis-Bold.otf');
+}
+
 /** Ionic CSS Variables **/
 :root {
   /** primary **/
