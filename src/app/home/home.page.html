@@ -15,12 +15,11 @@
 
           <div class="inputs">
             <ion-input type="number" placeholder="30" [(ngModel)]="number" [disabled]="timerStarted"></ion-input>
-
-              <ion-select placeholder="Select One" (ionChange)="intervalChanged($event)" value="60000" [disabled]="timerStarted">
-                <ion-select-option value="1000">Seconds</ion-select-option>
-                <ion-select-option value="60000">Minutes</ion-select-option>
-                <ion-select-option value="3600000">Hours</ion-select-option>
-              </ion-select>
+              <select (change)="intervalChanged($event)" value="1000" [disabled]="timerStarted">
+                <option value="1000">Seconds</option>
+                <option value="60000">Minutes</option>
+                <option value="3600000">Hours</option>
+              </select>
           </div>
         </div>
 

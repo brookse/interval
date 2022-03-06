@@ -45,13 +45,15 @@
       font-family: 'Metropolis-Bold';
     }
 
-    ion-select {
+    select, ion-select {
       width: 70%;
       font-size: 30px;
       padding: 0px;
       text-align: left;
+      border: 0;
       border-bottom: 1px solid #B0B0B0;
       font-family: 'Metropolis-Bold';
+      background-color: transparent;
     }
   }
 

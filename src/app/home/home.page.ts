@@ -10,7 +10,7 @@ export class HomePage {
   timerStarted;   // bool
   timerPaused;    // bool
   number;         // input, e.g. 30
-  interval = 60000;       // seconds, minutes, or hours
+  interval = 1000;       // seconds, minutes, or hours
   timer;          // the interval timer
   remainingTime;  // in ms
   displayTime;    // calculated every 500ms
@@ -67,21 +67,16 @@ export class HomePage {
     let hours = Math.floor(tempTime / 3600000);
     tempTime = tempTime - (hours * 3600000);
     if (hours > 0) {
-      buildingString += `${hours}<span class="tag">h</span> `;
       this.displayHours = hours;
     }
 
     let minutes = Math.floor(tempTime / 60000);
     tempTime = tempTime - (minutes * 60000);
-    buildingString += `${minutes}<span class="tag">m</span> `;
     this.displayMinutes = minutes;
 
     let seconds = Math.floor(tempTime / 1000);
     tempTime = tempTime - (hours * 1000);
-    buildingString += `${seconds}<span class="tag">s</span> `;
     this.displaySeconds = seconds;
-
-    this.displayTime = buildingString;
   }
 
   startTimer() {
@@ -103,11 +98,14 @@ export class HomePage {
   resetTimer() {
     this.timerStarted = false;
     this.timerPaused = false;
+    this.displayHours = null;
+    this.displayMinutes = 0;
+    this.displaySeconds = 0;
     clearInterval(this.timer);
   }
 
   intervalChanged(event) {
-    this.interval = Number(event.detail.value);
+    this.interval = Number(event.target.value);
   }
 
 }
