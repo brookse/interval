@@ -38,15 +38,19 @@
     display: flex;
     flex-direction: row;
     padding: 10px 0px;
+    width: min-content;
     ion-input {
       border-bottom: 1px solid #B0B0B0;
       margin-right: 40px;
       font-size: 30px;
+      min-width: 100px;
+      max-width: 20%;
       font-family: 'Metropolis-Bold';
     }
 
     select, ion-select {
-      width: 70%;
+      min-width: 200px;
+      // width: 100%;
       font-size: 30px;
       padding: 0px;
       text-align: left;
@@ -65,13 +69,15 @@
   margin-right: 40px;
 }
 .right {
-  width: 100%;
+  // width: 100%;
   text-align: left;
 }
 
 .flex-container {
   margin: 0px 40px;
   display: flex;
+  justify-content: center;
+  flex-flow: row wrap;
 
   .timer {
     width: 50%;
